@@ -1,6 +1,6 @@
 // Set base variables
 const slackWebHookUrl =
-  'https://hooks.slack.com/services/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'; // Slack webhook URL
+  'https://hooks.slack.com/services/ENTER/WEBHOOK/HERE'; // Slack webhook URL
 const baseCheckTagNumber = 3; // Send notification alert after this many failures for a single tag
 const baseCheckTimeActive = 5; // Number of tag failures as define above must happen within this many minutes
 const baseCheckTimePaused = 15; // When notification is sent, how many minutes must the notifications be paused
