@@ -1,0 +1,2 @@
+# gtm-monitor
+This GTM Monitor script will only fire when GTM's addEventCallback function returns a tag with the status equal to failure. It will forward the container ID, tag ID and tag name to Firebase's Real Time data base. The script will then monitor recurring failures on those tags. If the tag fails again within a set amount of time it will trigger a notification and pause any further monitoring for 15 minutes. If the failures stop, a function will clean the database accordingly using a cron-job.
