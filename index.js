@@ -1,13 +1,22 @@
 // Set base variables
 const slackWebHookUrl =
   'https://hooks.slack.com/services/ENTER/WEBHOOK/HERE'; // Slack webhook URL
+const zapierWebHookUrl = 'https://hooks.zapier.com/hooks/catch//ENTER/WEBHOOK/HERE/'; // Zapier webhook URL
 const baseCheckTagNumber = 3; // Send notification alert after this many failures for a single tag
 const baseCheckTimeActive = 5; // Number of tag failures as define above must happen within this many minutes
 const baseCheckTimePaused = 15; // When notification is sent, how many minutes must the notifications be paused
 const updateLoopTimeLimit = 5000; // Loop time limit difference to prevent infinite looping in onUpdate function
 
-// Slack notification function, change if you want another notification destination (ie. Zapier) and/or message
-function sendNotification(tagId, tagName) {
+// Slack notification function using Webhook and Zapier. Delete the one you don't want to use to prevent double notifications
+function sendNotification(tagId, tagName, containerId) {
+  request.post(zapierWebHookUrl, {
+    json: {
+      "containerId": containerId,
+      "tagId": tagId,
+      "tagName": tagName,
+      "timePause": baseCheckTimePaused
+    }
+  });
   request.post(slackWebHookUrl, {
     json: {
       text: `Tag "${tagName}" (id: ${tagId}) failed to load correctly.\nAlerting paused for ${baseCheckTimePaused} minutes.`
